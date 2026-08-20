@@ -305,37 +305,166 @@ section.resume-section {
   color: #fbbf24;
 }
 
-/* Responsive */
+/* Hero mobile photo — hidden on desktop, shown on mobile */
+.hero-mobile-photo {
+  display: none;
+}
+
+/* ========== Mobile Topbar & Hamburger ========== */
+.mobile-topbar {
+  display: none;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--primary-accent);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px var(--glow-color);
+}
+
+/* Hamburger → X animation */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-brand {
+  font-family: 'Saira Extra Condensed', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #f8fafc;
+  letter-spacing: 0.05em;
+}
+
+/* ========== Responsive ========== */
 @media (max-width: 992px) {
+
+  /* Sidebar becomes a fixed top navbar */
   .sidebar-nav {
     width: 100%;
     height: auto;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(34, 211, 238, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    flex-direction: column;
   }
-  
+
+  /* Hide desktop profile photo */
   .sidebar-profile {
     display: none;
   }
-  
+
+  /* Show mobile topbar */
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.5rem;
+    width: 100%;
+  }
+
+  /* Nav links hidden by default on mobile */
+  .sidebar-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 0 0.75rem 0;
+    border-top: 1px solid rgba(34, 211, 238, 0.08);
+  }
+
+  /* Shown when hamburger is open */
+  .sidebar-links.open {
+    display: flex;
+  }
+
+  .sidebar-links a {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .sidebar-links a:hover,
+  .sidebar-links a.active {
+    padding-left: 2rem;
+  }
+
+  /* Push content below the fixed topbar */
   .main-wrapper {
     margin-left: 0;
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
+    padding-top: 4.5rem;
+  }
+
+  section.resume-section {
+    min-height: auto;
+    padding: 4rem 0;
   }
 
   h1 {
-    font-size: 4rem;
-    line-height: 4rem;
+    font-size: 3rem;
+    line-height: 3rem;
   }
-  
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
   .resume-item {
     flex-direction: column;
   }
-  
+
   .resume-date {
     text-align: left;
     margin-top: 1rem;
+    min-width: unset;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .list-inline-item {
+    font-size: 2.2rem;
+    margin-right: 1rem;
+  }
+
+  /* Profile photo inside About section on mobile */
+  .hero-mobile-photo {
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(14, 165, 233, 0.3);
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+    margin-bottom: 1.5rem;
   }
 }
 
